@@ -1,0 +1,36 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Inviter quelqu’un</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="{% static 'css/cree_invitation.css' %}">
+  </head>
+  <body>
+    <div class="invitation-bg">
+      
+      <div class="invitation-container">
+        <h2 class="invitation-title">
+          📨 Inviter quelqu’un à : <span class="event-title">{{ evenement.titre }}</span>
+        </h2>
+        <form method="post" class="invitation-form">
+          {% csrf_token %}
+          {% for field in form %}
+            <div class="form-field">
+              {{ field.label_tag }}
+              {{ field }}
+              {% if field.errors %}
+                <p class="form-error">{{ field.errors|striptags }}</p>
+              {% endif %}
+            </div>
+          {% endfor %}
+          <button type="submit" name="action" value="preview" class="submit-btn">Aperçu</button>
+          <button type="submit" class="submit-btn">
+            Ajouter à la liste
+          </button>
+        </form>
+      </div>
+    </div>
+  </body>
+</html>

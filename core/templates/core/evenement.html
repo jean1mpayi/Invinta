@@ -1,0 +1,35 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Créer un événement</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="{% static 'css/evenement.css' %}">
+  </head>
+  <body>
+    <div class="evenement-bg">
+      
+      <div class="evenement-container">
+        <h2 class="evenement-title">Créer un événement</h2>
+        <form method="POST" class="evenement-form" enctype="multipart/form-data">
+          
+
+          {% csrf_token %}
+          {% for field in form %}
+            <div class="form-field">
+              {{ field.label_tag }}
+              {{ field }}
+              {% if field.errors %}
+                <p class="form-error">{{ field.errors|striptags }}</p>
+              {% endif %}
+            </div>
+          {% endfor %}
+          <button type="submit" class="submit-btn">
+            Créer
+          </button>
+        </form>
+      </div>
+    </div>
+  </body>
+</html>

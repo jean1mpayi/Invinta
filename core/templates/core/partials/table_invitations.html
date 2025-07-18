@@ -1,0 +1,20 @@
+{# filepath: core/templates/core/partials/table_invitations.html #}
+<table>
+  <tr>
+    <th>Nom</th>
+    <th>Email</th>
+    <th>Statut</th>
+  </tr>
+  {% for invite in invitations %}
+  <tr>
+    <td>{{ invite.nom_invite }}</td>
+    <td>{{ invite.email }}</td>
+    <td>{{ invite.statut }}</td>
+    
+  </tr>
+  {% empty %}
+  <tr>
+    <td colspan="3">Aucune invitation trouvée.</td>
+  </tr>
+  {% endfor %}
+</table>

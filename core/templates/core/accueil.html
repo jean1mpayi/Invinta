@@ -1,0 +1,55 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Dashboard Invinta</title>
+    <link rel="stylesheet" href="{% static 'css/accueil.css' %}">
+    <link rel="stylesheet" href="https://unpkg.com/@fortawesome/fontawesome-free/css/all.min.css" />
+  </head>
+  <body>
+    <div class="main-grid">
+      <!-- Sidebar -->
+      <aside class="sidebar">
+        <div>
+          <h1 class="logo">Invinta</h1>
+          <p class="welcome">
+            Bonjour <strong>{{ request.user.username }}</strong> 👋
+          </p>
+          <nav class="nav-links">
+            <a href="{% url 'cree_evenement' %}">➕ Créer un événement</a>
+            <a href="{% url 'deconnexion_vue' %}">🚪 Déconnexion</a>
+            <a href="accueil.html">📄 À propos</a>
+          </nav>
+        </div>
+        <p class="copyright">© 2025 Invinta</p>
+      </aside>
+
+      <!-- Contenu -->
+      <main class="content">
+        <h2 class="title">🎉 Vos événements</h2>
+        {% if evenements %}
+        <div class="events-grid">
+          {% for evenement in evenements %}
+          <div class="event-card">
+            <h3 class="event-title">{{ evenement.titre }}</h3>
+            <div class="event-actions">
+              <a href="{% url 'gestion_invitations' evenement.id %}" class="link-blue">
+                🔗 Gérer les invitations
+              </a>
+              <a href="{% url 'supprimer_evenement' evenement.id %}" class="link-red"
+                 onclick="return confirm('Supprimer cet événement ?');">
+                ❌ Supprimer
+              </a>
+            </div>
+          </div>
+          {% endfor %}
+        </div>
+        {% else %}
+        <p class="no-event">😕 Aucun événement pour le moment.</p>
+        {% endif %}
+      </main>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Invitation acceptée</title>
+    <style>
+      body {
+        font-family: "Segoe UI", sans-serif;
+        background-color: #f5f5f5;
+        padding: 20px;
+      }
+      .card {
+        max-width: 600px;
+        margin: auto;
+        background: white;
+        border-radius: 10px;
+        overflow: hidden;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      }
+      .header {
+        background: #4caf50;
+        color: white;
+        padding: 15px;
+        text-align: center;
+        font-size: 1.5em;
+      }
+      .content {
+        padding: 20px;
+      }
+      .image-container img {
+        width: 100%;
+        height: auto;
+      }
+      .footer {
+        background: #eeeeee;
+        text-align: center;
+        padding: 10px;
+        font-size: 0.9em;
+        color: #666;
+      }
+      @media (max-width: 600px) {
+        .card {
+          margin: 10px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="card">
+      <div class="header">🎉 Votre invitation est acceptée</div>
+      <div class="image-container">
+        <img
+          src="{{ invitation.evenement.image_evenement.url }}"
+          alt="Image de l'événement"
+        />
+      </div>
+      <div class="content">
+        <p>
+          <a
+            href="https://calendar.google.com/calendar/render?action=TEMPLATE
+  &text={{ invitation.evenement.titre|urlencode }}
+  &dates={{ invitation.evenement.date_evenement|date:'Ymd\\THis' }}/{{ invitation.evenement.date_evenement|date:'Ymd\\THis' }}
+  &details=Vous êtes invité à l'événement {{ invitation.evenement.titre }}
+  &location={{ invitation.evenement.lieu|urlencode }}
+  &sf=true&output=xml"
+            style="
+              display: inline-block;
+              padding: 10px 15px;
+              background: #4caf50;
+              color: white;
+              text-decoration: none;
+              border-radius: 5px;
+              margin-top: 10px;
+            "
+            target="_blank"
+          >
+            📆 Ajouter à Google Agenda
+          </a>
+        </p>
+
+        <p>Bonjour <strong>{{ invitation.nom_invite }}</strong>,</p>
+        <p>
+          Nous avons le plaisir de vous informer que votre invitation à
+          l’événement <strong>{{ invitation.evenement.titre }}</strong> a été
+          acceptée.
+        </p>
+        <p>
+          📅 <strong>Date :</strong> {{ invitation.evenement.date_evenement }}
+        </p>
+        <p>📍 <strong>Lieu :</strong> {{ invitation.evenement.lieu }}</p>
+        <p>Nous avons hâte de vous accueillir !</p>
+      </div>
+      <div class="footer">
+        Cet e-mail a été envoyé automatiquement – merci de ne pas y répondre.
+      </div>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,106 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Invitations - {{ evenement.titre }}</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'css/gestion_invitations.css' %}" />
+
+    <script>
+      function toggleAll(source) {
+        const checkboxes = document.querySelectorAll('.select-invite');
+        for (let i = 0; i < checkboxes.length; i++) {
+          checkboxes[i].checked = source.checked;
+        }
+      }
+    </script>
+  </head>
+  <body>
+    <div class="gestion-bg">
+      <div class="container transparent-box fade-in">
+        <h2 class="page-title">
+          📩 Invitations pour :
+          <span class="event-title">{{ evenement.titre }}</span>
+        </h2>
+
+        <!-- Filtres -->
+        <div class="filters">
+          <a href="?" class="filter-btn">Tous ({{ total }})</a>
+          <a href="?statut=accepte" class="filter-btn accepte">Acceptées ({{ nb_accepte }})</a>
+          <a href="?statut=refuse" class="filter-btn refuse">Refusées ({{ nb_refuse }})</a>
+          <a href="?statut=en_attente" class="filter-btn attente">En attente ({{ nb_attente }})</a>
+        </div>
+
+        <!-- Recherche et export -->
+        <form method="GET" action="" class="search-form">
+          <input type="text" name="q" placeholder="🔍 Rechercher un invité..." value="{{ request.GET.q }}">
+          <button type="submit">Rechercher</button>
+          <a href="{% url 'gestion_invitations' evenement.id %}?export_pdf=1" class="export-btn">📁 Exporter PDF</a>
+
+
+        </form>
+
+        <!-- Table + Actions -->
+        <form method="POST" action="{% url 'action_invitations_groupees' evenement.id %}">
+          {% csrf_token %}
+
+          <div class="bulk-actions">
+            <select name="action">
+              <option value="">-- Action groupée --</option>
+              <option value="accepte">✅ Marquer comme acceptée</option>
+              <option value="refuse">❌ Marquer comme refusée</option>
+              <option value="supprimer">🗑️ Supprimer</option>
+            </select>
+            <button type="submit">Appliquer</button>
+          </div>
+
+          <div class="table-wrapper">
+            <table class="invitations-table fade-in">
+              <thead>
+                <tr>
+                  <th><input type="checkbox" onclick="toggleAll(this)"></th>
+                  <th>#</th>
+                  <th>Nom</th>
+                  <th>Email</th>
+                  <th>Statut</th>
+                  <th>Lien</th>
+                  <th>Gérer</th>
+                </tr>
+              </thead>
+              <tbody>
+                {% for invite in invitations %}
+                <tr class="invite-row">
+                  <td><input type="checkbox" name="selection" value="{{ invite.id }}" class="select-invite"></td>
+                  <td>{{ forloop.counter }}</td>
+                  <td>{{ invite.nom_invite }}</td>
+                  <td>{{ invite.email }}</td>
+                  <td>
+                    {% if invite.statut == "accepte" %} ✅ Acceptée
+                    {% elif invite.statut == "refuse" %} ❌ Refusée
+                    {% else %} ⏳ En attente {% endif %}
+                  </td>
+                  <td>
+                    <a href="{{ invite.get_absolute_url }}" class="link-blue" target="_blank">Voir</a> 🔍
+                  </td>
+                  <td>
+                    <a href="{% url 'supprimer_invitation' invite.id %}" class="action-delete" onclick="return confirm('Supprimer cette invitation ?');">🗑️</a>
+                  </td>
+                </tr>
+                {% empty %}
+                <tr>
+                  <td colspan="6" class="no-invitation">Aucune invitation.</td>
+                </tr>
+                {% endfor %}
+              </tbody>
+            </table>
+          </div>
+        </form>
+
+        <div class="add-btn-wrapper">
+          <a href="{% url 'cree_invitation' evenement.id %}" class="add-btn">➕ Inviter quelqu’un</a>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
