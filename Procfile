@@ -1,1 +1,1 @@
-web: gunicorn invinta.wsgi
+web: gunicorn Invinta.wsgi:application

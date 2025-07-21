@@ -1,0 +1,13 @@
+services:
+  - type: web
+    name: invinta
+    env: python
+    buildCommand: "./build.sh"
+    startCommand: "gunicorn Invinta.wsgi:application"
+    envVars:
+      - key: DEBUG
+        value: false
+      - key: SECRET_KEY
+        value: votre_clé
+      - key: DATABASE_URL
+        value: votre_lien_postgres_render

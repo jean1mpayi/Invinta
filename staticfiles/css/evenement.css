@@ -1,0 +1,91 @@
+body {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-image: url("../images/bg.jpg");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.evenement-container {
+  background: transparent;
+  backdrop-filter: blur(16px);
+  padding: 2.5rem 2rem;
+  border-radius: 1.2rem;
+  max-width: 440px;
+  width: 100%;
+  box-shadow: 0 8px 32px rgba(0,0,0,0.25);
+  border: 1px solid rgba(255,255,255,0.15);
+  color: #fff;
+}
+
+.evenement-title {
+  font-size: 2rem;
+  font-weight: bold;
+  text-align: center;
+  margin-bottom: 2rem;
+  letter-spacing: 1px;
+}
+
+.evenement-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
+}
+
+.form-field label {
+  color: #e0e7ef;
+  margin-bottom: 0.3rem;
+  display: block;
+  font-weight: 500;
+  letter-spacing: 0.5px;
+}
+
+.form-field input,
+.form-field textarea,
+.form-field select {
+  width: 100%;
+  padding: 0.6rem 0.8rem;
+  border-radius: 0.6rem;
+  border: 1px solid #cbd5e1;
+  color: #222;
+  background: rgba(255,255,255,0.95);
+  font-size: 1rem;
+  transition: border 0.2s;
+}
+
+.form-field input:focus,
+.form-field textarea:focus,
+.form-field select:focus {
+  border: 1.5px solid #6366f1;
+  outline: none;
+}
+
+.submit-btn {
+  width: 100%;
+  padding: 0.85rem;
+  background: #6366f1;
+  color: #fff;
+  border: none;
+  border-radius: 0.6rem;
+  font-weight: bold;
+  font-size: 1.1rem;
+  cursor: pointer;
+  transition: background 0.2s, transform 0.2s;
+  margin-top: 0.5rem;
+  box-shadow: 0 2px 8px rgba(99,102,241,0.08);
+}
+
+.submit-btn:hover {
+  background: #4f46e5;
+  transform: translateY(-2px) scale(1.02);
+}
+
+.form-error {
+  color: #f87171;
+  font-size: 0.95rem;
+  margin-top: 0.25rem;
+  font-weight: 500;
+}
