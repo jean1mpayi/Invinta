@@ -15,7 +15,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # Sécurité
 SECRET_KEY = config('SECRET_KEY')
 DEBUG = config('DEBUG', default=False, cast=bool)
-ALLOWED_HOSTS = ['invinta.onrender.com', 'localhost', '127.0.0.1']
+ALLOWED_HOSTS = ['invinta-0.onrender.com', 'localhost', '127.0.0.1']
 
 # Applications installées
 INSTALLED_APPS = [
