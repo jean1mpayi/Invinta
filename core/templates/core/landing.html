@@ -1,0 +1,100 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Bienvenue sur Invinta</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- 🔗 Lien vers le fichier CSS personnalisé -->
+    <link rel="stylesheet" href="{% static 'css/landing.css' %}" />
+    <link rel="icon" type="image/png" href="{% static 'images/favicon.png' %}">
+  </head>
+  <body>
+    <!-- ✅ HEADER -->
+    <header class="header">
+      <div class="logo-container">
+        <!-- LOGO -->
+        <img
+          src="{% static 'images/logo.png' %}"
+          alt="Logo Invinta"
+          class="logo"
+        />
+      </div>
+      <nav class="nav-links">
+        <a href="{% url 'login_vue' %}" class="btn-login">Connexion</a>
+        <a href="{% url 'inscription_vue' %}" class="btn-primary"
+          >Créer des invitations</a
+        >
+      </nav>
+    </header>
+
+    <!-- ✅ HERO SECTION -->
+    <section class="hero">
+      <h1 class="hero-title">Créez des invitations inoubliables</h1>
+      <p class="hero-subtitle">
+        Invinta vous aide à créer, partager et gérer vos invitations en ligne en
+        quelques clics.
+      </p>
+      <a href="{% url 'inscription_vue' %}" class="btn-primary"
+        >Commencer maintenant</a
+      >
+
+      <!-- 🔵 IMAGE OU VIDÉO DE DÉMO -->
+      <div class="hero-media">
+        <img
+          src="{% static 'images/demo-invitation.png' %}"
+          alt="Aperçu"
+          class="demo-img"
+        />
+        <!-- OU BIEN :
+      <video controls class="demo-video">
+        <source src="{% static 'videos/demo.mp4' %}" type="video/mp4">
+      </video>
+      --></div>
+    </section>
+    <!-- 🔽 Bouton pour scroller vers la suite -->
+    <a href="#features" class="scroll-down"> ↓ </a>
+
+    <!-- ✅ FONCTIONNALITÉS -->
+    <section id="features" class="features">
+      <h2 class="section-title">Pourquoi choisir Invinta ?</h2>
+      <div class="feature-list">
+        <div class="feature">
+          <h3>Personnalisation simple</h3>
+          <p>
+            Choisissez un style et ajoutez votre contenu en quelques secondes.
+          </p>
+        </div>
+        <div class="feature">
+          <h3>Partage instantané</h3>
+          <p>Envoyez vos invitations via un lien ou un QR Code.</p>
+        </div>
+        <div class="feature">
+          <h3>Suivi des réponses</h3>
+          <p>Gérez les confirmations depuis votre tableau de bord.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ✅ ÉTAPES -->
+    <section class="steps">
+      <h2 class="section-title">Comment ça marche ?</h2>
+      <div class="step-list">
+        <div class="step"><span>1</span> Créez votre compte</div>
+        <div class="step"><span>2</span> Choisissez un modèle</div>
+        <div class="step"><span>3</span> Ajoutez vos infos</div>
+        <div class="step"><span>4</span> Partagez et suivez</div>
+      </div>
+    </section>
+
+    <!-- ✅ FOOTER -->
+    <footer class="footer">
+      <p>&copy; 2025 Invinta. Tous droits réservés.</p>
+      <div class="footer-links">
+        <a href="#">Confidentialité</a>
+        <a href="#">Conditions</a>
+        <a href="#">Contact</a>
+      </div>
+    </footer>
+  </body>
+</html>

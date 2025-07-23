@@ -22,6 +22,11 @@ from reportlab.lib import colors
 from io import BytesIO
 
 
+def landing_vue(request):
+    if request.user.is_authenticated:
+        return redirect('accueil_vue')
+    return render(request, 'core/landing.html')
+
 
 # 🔹 Vue publique : affichage et réponse à une invitation
 def afficher_et_repondre_invitation(request, invitation_id):
@@ -312,4 +317,5 @@ def dashboard(request):
         "sent_invitations": sent,
         "weekly_data": weekly_data
     })
+
 
