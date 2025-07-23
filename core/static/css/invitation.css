@@ -1,7 +1,7 @@
 body {
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   animation: fadeIn 0.5s ease-in;
-  background: linear-gradient(135deg, #f6f8fc, #e4ecf7);
+  background-image: url("../images/bg.jpg");
   color: #333;
 }
 

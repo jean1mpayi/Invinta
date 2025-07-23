@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="fr" class="dark">
+<head>
+  <meta charset="UTF-8">
+  <title>Dashboard Invinta</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-900 text-white">
+
+  <div class="flex min-h-screen">
+
+    <!-- Sidebar -->
+    <aside class="w-64 bg-gray-800 p-6">
+      <h1 class="text-2xl font-bold mb-10">Invinta</h1>
+      <nav>
+        <ul class="space-y-4">
+          <li><a href="{% url 'dashboard' %}" class="hover:text-indigo-400">🏠 Tableau de bord</a></li>
+          <li><a href="{% url 'invitations' %}" class="hover:text-indigo-400">📨 Invitations</a></li>
+          <li><a href="{% url 'users' %}" class="hover:text-indigo-400">👤 Utilisateurs</a></li>
+          <li><a href="{% url 'settings' %}" class="hover:text-indigo-400">⚙️ Paramètres</a></li>
+        </ul>
+      </nav>
+    </aside>
+
+    <!-- Main content -->
+    <main class="flex-1 p-8">
+
+      <!-- Header -->
+      <div class="mb-8">
+        <h2 class="text-3xl font-semibold">Bienvenue, {{ user.username }} 👋</h2>
+        <p class="text-gray-400">Voici un aperçu de vos données</p>
+      </div>
+
+      <!-- Stat Cards -->
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-10">
+        <div class="bg-gray-800 p-6 rounded-xl shadow">
+          <p class="text-sm text-gray-400">Invitations totales</p>
+          <h3 class="text-2xl font-bold">{{ total_invitations }}</h3>
+        </div>
+        <div class="bg-gray-800 p-6 rounded-xl shadow">
+          <p class="text-sm text-gray-400">En attente</p>
+          <h3 class="text-2xl font-bold">{{ pending_invitations }}</h3>
+        </div>
+        <div class="bg-gray-800 p-6 rounded-xl shadow">
+          <p class="text-sm text-gray-400">Envoyées</p>
+          <h3 class="text-2xl font-bold">{{ sent_invitations }}</h3>
+        </div>
+      </div>
+
+      <!-- Graph -->
+      <div class="bg-gray-800 p-6 rounded-xl shadow">
+        <h4 class="mb-4 text-xl font-semibold">Activité hebdomadaire</h4>
+        <canvas id="activityChart" height="120"></canvas>
+      </div>
+
+    </main>
+  </div>
+
+  <!-- Chart.js -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script>
+    const ctx = document.getElementById('activityChart').getContext('2d');
+    new Chart(ctx, {
+      type: 'bar',
+      data: {
+        labels: ['Lun', 'Mar', 'Mer', 'Jeu', 'Ven', 'Sam', 'Dim'],
+        datasets: [{
+          label: 'Invitations',
+          data: {{ weekly_data|safe }},
+          backgroundColor: 'rgba(99, 102, 241, 0.7)',
+          borderRadius: 6,
+        }]
+      },
+      options: {
+        scales: {
+          y: { beginAtZero: true }
+        }
+      }
+    });
+  </script>
+
+</body>
+</html>

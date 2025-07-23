@@ -15,6 +15,7 @@ urlpatterns = [
     path('inscription/', views.inscription_vue, name='inscription_vue'),
     path('deconnexion/', views.deconnexion_vue, name='deconnexion_vue'),
     path('evenement/<int:evenement_id>/invitations/actions/', views.action_invitations_groupees, name='action_invitations_groupees'),
-    
+    path("dashboard/", views.dashboard, name="dashboard")
+
 
 ]

@@ -290,3 +290,26 @@ def action_invitations_groupees(request, evenement_id):
 def deconnexion_vue(request):
     logout(request)
     return redirect('login_vue')
+
+
+
+from django.shortcuts import render
+from .models import Invitation
+from django.contrib.auth.decorators import login_required
+
+@login_required
+def dashboard(request):
+    total = Invitation.objects.count()
+    pending = Invitation.objects.filter(statut='en_attente').count()
+    sent = Invitation.objects.filter(statut='accepte').count()
+
+    # Exemple fictif pour le graphique : nombre d'invitations acceptées par jour
+    weekly_data = [3, 5, 2, 6, 1, 4, 0]  # à remplacer plus tard par de vraies stats
+
+    render(request, "mon_app/dashboard.html", {...}) ({
+        "total_invitations": total,
+        "pending_invitations": pending,
+        "sent_invitations": sent,
+        "weekly_data": weekly_data
+    })
+
