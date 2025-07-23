@@ -117,3 +117,7 @@ SESSION_SAVE_REQUEST = True
 # Email (à adapter en prod)
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 DEFAULT_FROM_EMAIL = 'noreply@monsite.com'
+
+# Fichiers médias
+MEDIA_URL = '/media/'
+MEDIA_ROOT = BASE_DIR / 'media'
