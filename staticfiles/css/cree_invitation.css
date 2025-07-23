@@ -10,7 +10,7 @@ body {
 }
 
 .invitation-container {
-  background: transparent;
+  
   backdrop-filter: blur(16px); 
   padding: 2rem;
   border-radius: 1rem;
