@@ -8,10 +8,6 @@ import os
 from pathlib import Path
 from decouple import config
 import dj_database_url
-import cloudinary
-import cloudinary.uploader
-import cloudinary.api
-
 
 # BASE DIR
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -29,19 +25,19 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'core',
-] 
 
-INSTALLED_APPS += [
+    # App de ton projet
+    'core',
+
+    # Cloudinary
     'cloudinary',
     'cloudinary_storage',
 ]
 
-
 # Middleware
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
-    'whitenoise.middleware.WhiteNoiseMiddleware',  # doit être très tôt
+    'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -57,7 +53,7 @@ ROOT_URLCONF = 'Invinta.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [os.path.join(BASE_DIR, 'templates')],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -90,21 +86,16 @@ USE_TZ = True
 
 # Fichiers statiques
 STATIC_URL = '/static/'
-STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles') 
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
-# Fichiers médias
+# Fichiers médias avec Cloudinary
 CLOUDINARY_STORAGE = {
     'CLOUD_NAME': config('CLOUDINARY_CLOUD_NAME'),
     'API_KEY': config('CLOUDINARY_API_KEY'),
     'API_SECRET': config('CLOUDINARY_API_SECRET'),
 }
-
 DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
-
-
-# Django defaults
-DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 # Auth
 LOGIN_URL = 'login'
@@ -112,12 +103,15 @@ LOGIN_REDIRECT_URL = 'accueil'
 
 # Sessions
 SESSION_COOKIE_AGE = 86400
-SESSION_SAVE_REQUEST = True
+SESSION_SAVE_EVERY_REQUEST = True  # Corrigé ici
 
 # Email (à adapter en prod)
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 DEFAULT_FROM_EMAIL = 'noreply@monsite.com'
 
-# Fichiers médias
+# Django defaults
+DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+# (Optionnel) chemin pour fichiers médias locaux, même si Cloudinary est utilisé
 MEDIA_URL = '/media/'
 MEDIA_ROOT = BASE_DIR / 'media'

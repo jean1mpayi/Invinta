@@ -1,3 +1,12 @@
+:root {
+  --color-primary: #7b7a7a;
+  --color-bg: #fff4f4;
+  --color-dark: #1d1c1c;
+  --color-text: #1e1e1e;
+  --color-accent: #598280;
+  --color-hover: #28504f;
+}
+
 body {
   min-height: 100vh;
   display: flex;
@@ -26,7 +35,7 @@ body {
   width: 400px;
   height: 100%;
   box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
-  border: 1px solid rgba(255, 255, 255, 0.2);
+  border: 1px solid var(--color-hover);
   color: #fff;
 }
 
@@ -62,7 +71,7 @@ body {
 .submit-btn {
   width: 100%;
   padding: 0.75rem;
-  background: #6366f1;
+  background: var(--color-accent);
   color: #fff;
   border: none;
   border-radius: 0.5rem;
@@ -72,9 +81,9 @@ body {
 }
 
 .submit-btn:hover {
-  border: #ffffff;
-  background: transparent;
-  color: #6366f1;
+  border: 2px solid var(--color-accent);
+  color: var(--color-accent);
+  background-color: transparent;
 }
 
 .form-error {
