@@ -1,8 +1,7 @@
 body {
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   animation: fadeIn 0.5s ease-in;
-  background-image: url("../images/bg.jpg");
-  color: #333;
+background-color: #7b7a7a;  color: #333;
 }
 
 .fade-in {

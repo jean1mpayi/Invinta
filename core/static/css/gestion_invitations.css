@@ -2,8 +2,7 @@
 body {
   margin: 0;
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  background: url("/static/images/bg.jpg") no-repeat center center fixed;
-  background-size: cover;
+background-color: #7b7a7a;  background-size: cover;
   color: #fff;
 }
 
