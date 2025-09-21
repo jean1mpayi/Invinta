@@ -1,0 +1,113 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Invitation</title>
+        <link rel="stylesheet" href="{% static 'css/style.css' %}" />
+
+  </head>
+  <body>
+    {% if message %}
+    <div class="alert alert-info">{{ message }}</div>
+    {% endif %}
+    <div class="page">
+      <div class="card">
+        <div class="invitation">
+          <div class="bg-circle-1"></div>
+          <div class="bg-circle-2"></div>
+
+          <div class="invitation-content">
+            <div class="invitation-title"><strong>{{ invitation.evenement.titre }}</strong></div>
+            <div class="separator"></div>
+            <div class="hello">
+              Bonjour<strong> {{ invitation.nom_invite }}</strong>,<br />
+            </div>
+            <div class="message">{{ invitation.evenement.description}}</div>
+            <div class="details">
+              <p><strong>Lieu :</strong> {{ invitation.evenement.lieu }}</p>
+              <p><strong>Date :</strong> {{ invitation.evenement.date }}</p>
+            </div>
+          </div>
+          {% if invitation.evenement.image_evenement %}
+          <div class="photo-container">
+            <img
+              src="{{ invitation.evenement.image_evenement.url }}"
+              alt="invitation"
+            />
+          </div>
+          {% endif %}
+        </div>
+
+        <div class="question">VOULEZ-VOUS REPONDRE A NOTRE INVITATION ?</div>
+
+        <div class="actions">
+          <a href="?reponse=accepte"><div class="btn accept">ACCEPTER</div></a>
+
+          <a href="?reponse=refuse"><div class="btn refuse">REFUSER</div></a>
+        </div>
+        <div id="countdown" class="my-3 fw-bold text-danger"></div>
+        <div>{% if est_createur %}
+    <div class="container mt-4">
+      <hr />
+      <p><strong>Partager cette invitation :</strong>
+      <input
+        type="text"
+        class="form-control mb-2"
+        id="invitationLink"
+        value="{{ request.build_absolute_uri }}"
+        readonly
+      /> </p>
+      <button class="btn btn-primary" onclick="partager()">
+        📤 Partager le lien
+      </button>
+    </div>
+    {% endif %}</div>
+      </div>
+    </div>
+    
+    <script>
+      function partager() {
+        const url = document.getElementById("invitationLink").value;
+        if (navigator.share) {
+          navigator
+            .share({
+              title: "Invitation",
+              text: "Voici le lien de l’invitation",
+              url: url,
+            })
+            .catch((error) => console.log("Erreur de partage", error));
+        } else {
+          navigator.clipboard.writeText(url);
+          alert("Lien copié dans le presse-papier 📋");
+        }
+      }
+
+      // Compte à rebours
+      const dateEvent = new Date(
+        "{{ invitation.evenement.date|date:'Y-m-d\\TH:i:s' }}"
+      ).getTime();
+      const countdown = document.getElementById("countdown");
+
+      setInterval(() => {
+        const now = new Date().getTime();
+        const distance = dateEvent - now;
+
+        if (distance < 0) {
+          countdown.innerHTML = "❌ L'événement est passé.";
+          return;
+        }
+
+        const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+        const hours = Math.floor(
+          (distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)
+        );
+        const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+        const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+        countdown.innerHTML = `⏳ ${days}j ${hours}h ${minutes}m ${seconds}s`;
+      }, 1000);
+    </script>
+  </body>
+</html>

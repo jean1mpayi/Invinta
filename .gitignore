@@ -1,0 +1,261 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Environments
+.env
+.venv
+env/
+venv/
+ENV/
+env.bak/
+venv.bak/
+
+# Distribution / packaging
+.Python
+build/
+dist/
+develop-eggs/
+eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+share/python-wheels/
+*.egg-info/
+.installed.cfg
+*.whl
+MANIFEST
+
+# PyInstaller
+#  Usually these files are written into a _MEIPASS folder
+#  use this to prevent garbage collection errors
+_MEIPASS*
+*.manifest
+
+# Unit test / coverage reports
+htmlcov/
+.tox/
+.coverage
+.coverage.*
+.cache
+nosetests.xml
+coverage.xml
+*.cover
+*.py,cover
+.pytest_cache/
+!**/__init__.py
+
+# Translations
+*.mo
+*.pot
+
+# Django stuff:
+*.log
+*.pot
+media/*
+!media/.git
+staticfiles/*
+!staticfiles/.git
+/db.sqlite3
+/db.sqlite3-journal
+local_settings.py
+secret_key.txt
+
+# MkDocs
+/site
+
+# Sphinx documentation
+docs/_build/
+
+# Vagrant
+.vagrant/
+
+# Docker
+*/docker-compose.override.yml
+*/docker-compose.yml
+!docker-compose.prod.yml
+
+# OS generated files
+.DS_Store
+Thumbs.db
+Thumbs.db:encryptable
+ehthumbs.db
+._*
+*.swp
+*.swo
+.fuse_hidden*
+.directory
+.Trash-*
+Icon?
+*.bak
+*.orig
+*~
+*.tmproj/
+*.lproj/
+.idea/
+.vscode/
+*.sassc
+*.log
+*.tmp
+```
+
+**Explications :**
+
+*   **Fichiers compilés Python :**  `.pyc`,  `.pyo`,  `__pycache__/`
+*   **Environnements virtuels :**  `.venv`,  `env/`,  `venv/`
+*   **Distribution et packaging :**  `build/`,  `dist/`,  `*.egg-info/`,  `*.whl`
+*   **Tests et couverture :**  `htmlcov/`,  `.tox/`,  `.coverage`
+*   **Fichiers Django :**
+    *   `*.log`  (fichiers de logs)
+    *   `media/*`  (sauf le  `.git`  à l'intérieur, si tu utilises Git pour versionner les médias)
+    *   `staticfiles/*`  (sauf le  `.git`  à l'intérieur, si tu utilises Git pour versionner les fichiers statiques)
+    *   `db.sqlite3`  (ta base de données SQLite locale, à ne pas commiter en production)
+    *   `local_settings.py`  (fichier de configuration locale)
+    *   `secret_key.txt`  (fichier contenant ta clé secrète)
+*   **Fichiers système :**  `.DS_Store`,  `Thumbs.db`,  `*.swp`
+*   **Fichiers IDE :**  `.idea/`,  `.vscode/`
+
+**Comment l'utiliser :**
+
+1.  Crée un fichier texte nommé  `.gitignore`  à la racine de ton projet.
+2.  Copie-colle le contenu ci-dessus dans ce fichier.
+3.  Assure-toi que ton IDE (VS Code) reconnaît bien le fichier  `.gitignore`  (il devrait griser les fichiers/dossiers ignorés dans l'explorateur).
+
+**Important :**
+
+*   Ce fichier est un exemple, adapte-le à tes besoins spécifiques.
+*   Si tu as déjà commité des fichiers que tu veux ignorer, tu devras les supprimer du cache de Git avec la commande  `git rm --cached <fichier>`  avant que  `.gitignore`  ne prenne effet.# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Environments
+.env
+.venv
+env/
+venv/
+ENV/
+env.bak/
+venv.bak/
+
+# Distribution / packaging
+.Python
+build/
+dist/
+develop-eggs/
+eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+share/python-wheels/
+*.egg-info/
+.installed.cfg
+*.whl
+MANIFEST
+
+# PyInstaller
+#  Usually these files are written into a _MEIPASS folder
+#  use this to prevent garbage collection errors
+_MEIPASS*
+*.manifest
+
+# Unit test / coverage reports
+htmlcov/
+.tox/
+.coverage
+.coverage.*
+.cache
+nosetests.xml
+coverage.xml
+*.cover
+*.py,cover
+.pytest_cache/
+!**/__init__.py
+
+# Translations
+*.mo
+*.pot
+
+# Django stuff:
+*.log
+*.pot
+media/*
+!media/.git
+staticfiles/*
+!staticfiles/.git
+/db.sqlite3
+/db.sqlite3-journal
+local_settings.py
+secret_key.txt
+
+# MkDocs
+/site
+
+# Sphinx documentation
+docs/_build/
+
+# Vagrant
+.vagrant/
+
+# Docker
+*/docker-compose.override.yml
+*/docker-compose.yml
+!docker-compose.prod.yml
+
+# OS generated files
+.DS_Store
+Thumbs.db
+Thumbs.db:encryptable
+ehthumbs.db
+._*
+*.swp
+*.swo
+.fuse_hidden*
+.directory
+.Trash-*
+Icon?
+*.bak
+*.orig
+*~
+*.tmproj/
+*.lproj/
+.idea/
+.vscode/
+*.sassc
+*.log
+*.tmp
+```
+
+**Explications :**
+
+*   **Fichiers compilés Python :**  `.pyc`,  `.pyo`,  `__pycache__/`
+*   **Environnements virtuels :**  `.venv`,  `env/`,  `venv/`
+*   **Distribution et packaging :**  `build/`,  `dist/`,  `*.egg-info/`,  `*.whl`
+*   **Tests et couverture :**  `htmlcov/`,  `.tox/`,  `.coverage`
+*   **Fichiers Django :**
+    *   `*.log`  (fichiers de logs)
+    *   `media/*`  (sauf le  `.git`  à l'intérieur, si tu utilises Git pour versionner les médias)
+    *   `staticfiles/*`  (sauf le  `.git`  à l'intérieur, si tu utilises Git pour versionner les fichiers statiques)
+    *   `db.sqlite3`  (ta base de données SQLite locale, à ne pas commiter en production)
+    *   `local_settings.py`  (fichier de configuration locale)
+    *   `secret_key.txt`  (fichier contenant ta clé secrète)
+*   **Fichiers système :**  `.DS_Store`,  `Thumbs.db`,  `*.swp`
+*   **Fichiers IDE :**  `.idea/`,  `.vscode/`
+
+**Comment l'utiliser :**
+
+1.  Crée un fichier texte nommé  `.gitignore`  à la racine de ton projet.
+2.  Copie-colle le contenu ci-dessus dans ce fichier.
+3.  Assure-toi que ton IDE (VS Code) reconnaît bien le fichier  `.gitignore`  (il devrait griser les fichiers/dossiers ignorés dans l'explorateur).
+
+**Important :**
+
+*   Ce fichier est un exemple, adapte-le à tes besoins spécifiques.
+*   Si tu as déjà commité des fichiers que tu veux ignorer, tu devras les supprimer du cache de Git avec la commande  `git rm --cached <fichier>`  avant que  `.gitignore`  ne

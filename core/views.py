@@ -49,16 +49,27 @@ def afficher_et_repondre_invitation(request, invitation_id):
         else:
             message = "❌ Vous avez refusé l’invitation."
 
-    # Affichage de la page (avec ou sans réponse)
-    return render(request, "core/invitation.html", {
+        # Choix du template selon le style
+    style = evenement.style_invitation
+    if style == "classique":
+        template_name = "core/invitation_classique.html"
+    elif style == "moderne":
+        template_name = "core/invitation_moderne.html"
+    elif style == "mariage":
+        template_name = "core/invitation_mariage.html"
+    elif style == "anniversaire":
+        template_name = "core/invitation_anniversaire.html"
+    else:
+        template_name = "core/invitation.html"  # fallback
+
+    return render(request, template_name, {
         "invitation": invitation,
         "evenement": evenement,
         "message": message,
         "est_createur": est_createur
-        
     })
 
-
+@login_required(login_url='login_vue')
 def vue_liste_invitations(request, evenement_id):
     evenement = get_object_or_404(Evenement, id=evenement_id)
     statut = request.GET.get('statut')
@@ -98,7 +109,7 @@ def login_vue(request):
 
 
 
-
+@login_required(login_url='login_vue')
 def accueil_vue(request):
     if request.user.is_authenticated:
         evenements = Evenement.objects.filter(organisateur=request.user)
@@ -108,7 +119,7 @@ def accueil_vue(request):
 
 
 
-@login_required
+@login_required(login_url='login_vue')
 def gestion_invitations(request, evenement_id):
     evenement = get_object_or_404(Evenement, id=evenement_id)
     invitations = Invitation.objects.filter(evenement=evenement)
@@ -189,7 +200,7 @@ def gestion_invitations(request, evenement_id):
 
 
 
-@login_required(login_url='login')
+@login_required(login_url='login_vue')
 def cree_evenement(request):
     if request.method == "POST":
         form = EvenementForm(request.POST, request.FILES)
@@ -202,7 +213,7 @@ def cree_evenement(request):
         form = EvenementForm()
     return render(request, 'core/evenement.html', {'form': form})
 
-@login_required(login_url='login')
+@login_required(login_url='login_vue')
 def cree_invitation(request, evenement_id):
     evenement = get_object_or_404(Evenement, id=evenement_id)
     form = InvitationForm(request.POST or None)
@@ -238,13 +249,13 @@ def cree_invitation(request, evenement_id):
 
 
 
-@login_required(login_url='login')
+@login_required(login_url='login_vue')
 def supprimer_evenement(request, evenement_id):
     evenement = get_object_or_404(Evenement, id=evenement_id, organisateur=request.user)
     evenement.delete()
     return redirect('accueil_vue')
 
-@login_required(login_url='login')
+@login_required(login_url='login_vue')
 def supprimer_invitation(request, invitation_id):
     invitation = get_object_or_404(Invitation, id=invitation_id, evenement__organisateur=request.user)
     evenement_id = invitation.evenement.id
@@ -264,7 +275,7 @@ def inscription_vue(request):
     return render(request, 'core/inscription.html', {'form': form})
 
 
-
+@login_required(login_url='login_vue')
 @require_POST
 def action_invitations_groupees(request, evenement_id):
     ids = request.POST.getlist('selection')
@@ -302,7 +313,7 @@ from django.shortcuts import render
 from .models import Invitation
 from django.contrib.auth.decorators import login_required
 
-@login_required
+@login_required(login_url='login_vue')
 def dashboard(request):
     total = Invitation.objects.count()
     pending = Invitation.objects.filter(statut='en_attente').count()

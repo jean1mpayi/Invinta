@@ -1,8 +1,18 @@
 /* === gestion_invitations.css === */
+:root {
+  --color-primary: #7b7a7a;
+  --color-bg: #fff4f4;
+  --color-dark: #1d1c1c;
+  --color-text: #1e1e1e;
+  --color-accent: #598280;
+  --color-hover: #28504f;
+}
+
 body {
   margin: 0;
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-background-color: #7b7a7a;  background-size: cover;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  background-color: #7b7a7a;
+  background-size: cover;
   color: #fff;
 }
 
@@ -18,8 +28,14 @@ background-color: #7b7a7a;  background-size: cover;
 }
 
 @keyframes fadeIn {
-  from { opacity: 0; transform: translateY(10px); }
-  to { opacity: 1; transform: translateY(0); }
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 h2.page-title {
@@ -145,17 +161,47 @@ h2.page-title {
   text-align: center;
 }
 
+.back-btn-wrapper {
+  margin-top: 2rem;
+  text-align: center;
+}
 .add-btn {
-  background: #9b59b6;
-  color: white;
-  padding: 0.75rem 1.5rem;
-  border-radius: 8px;
-  text-decoration: none;
-  transition: background 0.3s;
+  width: 100%;
+  padding: 0.75rem;
+  background: var(--color-hover);
+  color: #fff;
+  border: none;
+  border-radius: 0.5rem;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background 0.2s;
 }
 
 .add-btn:hover {
-  background: #8e44ad;
+  border: 2px solid var(--color-accent);
+  color: var(--color-accent);
+  background-color: transparent;
+}
+
+.back-btn {
+  width: 100%;
+  padding: 0.75rem;
+  background: var(--color-hover);
+  color: #fff;
+  border: 2px solid var(--color-accent);
+  color: var(--color-accent);
+  border: none;
+  border-radius: 0.5rem;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.back-btn:hover {
+  background-color: transparent;
+  border: 2px solid var(--color-accent);
+  color: var(--color-accent);
+  background-color: transparent;
 }
 
 /* === Responsive === */

@@ -9,16 +9,8 @@ import uuid  # Pour générer des liens uniques
 STYLE_CHOICES = [
     ('classique', 'Classique'),
     ('moderne', 'Moderne'),
-    ('élégant', 'Élégant'),
-]
-
-# ───────────────────────────────────────────────────────────────
-# Modèle représentant un événement (ex : mariage, réunion)
-# ───────────────────────────────────────────────────────────────
-STYLE_CHOICES = [
-    ('classique', 'Classique'),
-    ('moderne', 'Moderne'),
-    ('élégant', 'Élégant'),
+    ('mariage', 'Mariage'),
+    ('anniversaire', 'Anniversaire'),
 ]
 
 class Evenement(models.Model):
@@ -28,15 +20,13 @@ class Evenement(models.Model):
     lieu = models.CharField(max_length=200)
     description = models.TextField(blank=True)
 
-    # 🔥 Champ de style prédéfini
     style_invitation = models.CharField(
         max_length=20,
         choices=STYLE_CHOICES,
-        default='moderne',
+        default='classique',
         help_text="Style visuel prédéfini pour l'invitation."
     )
 
-    # 🔥 Image facultative liée à l’événement
     image_evenement = models.ImageField(
         upload_to='evenements/',
         null=True,
@@ -47,9 +37,6 @@ class Evenement(models.Model):
     def __str__(self):
         return f"{self.titre} - {self.date.strftime('%d/%m/%Y')}"
 
-# ───────────────────────────────────────────────────────────────
-# Modèle représentant chaque invitation envoyée à un invité
-# ───────────────────────────────────────────────────────────────
 class Invitation(models.Model):
     evenement = models.ForeignKey(
         Evenement,
@@ -59,8 +46,12 @@ class Invitation(models.Model):
     )
     nom_invite = models.CharField(max_length=100)
     email = models.EmailField()
-
-    # Statut de l'invitation (acceptée, refusée, en attente)
+    numero_telephone = models.CharField(
+        max_length=15,
+        blank=True,
+        null=True,
+        help_text="Numéro de téléphone de l'invité."
+    )
     statut = models.CharField(
         max_length=10,
         choices=[
@@ -71,15 +62,12 @@ class Invitation(models.Model):
         default="en_attente",
         help_text="Statut de la réponse de l'invité."
     )
-
-    # UUID unique pour chaque lien d'invitation
     lien = models.UUIDField(
         default=uuid.uuid4,
         unique=True,
         editable=False,
         help_text="Lien unique pour chaque invitation."
     )
-
     date_reponse = models.DateTimeField(
         null=True,
         blank=True,

@@ -37,18 +37,19 @@
             <h3 class="event-title">{{ evenement.titre }}</h3>
             <div class="event-actions">
               <a href="{% url 'gestion_invitations' evenement.id %}" class="link-blue">
-                🔗 Gérer les invitations
+                ➕ invitations
               </a>
               <a href="{% url 'supprimer_evenement' evenement.id %}" class="link-red"
                  onclick="return confirm('Supprimer cet événement ?');">
-                ❌ Supprimer
+                ❌ Supprimer l'événement
               </a>
             </div>
           </div>
+
           {% endfor %}
         </div>
         {% else %}
-        <p class="no-event">😕 Aucun événement pour le moment.</p>
+        <p class="no-event">😕 Aucun événement pour le moment. Pour créer des invitations <a href="{% url 'cree_evenement' %}">Créer un événement</a></p>
         {% endif %}
       </main>
     </div>

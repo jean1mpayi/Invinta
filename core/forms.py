@@ -12,11 +12,12 @@ class InvitationForm(forms.ModelForm):
     """
     class Meta:
         model = Invitation
-        fields = ['nom_invite', 'email', 'statut']
+        fields = ['nom_invite', 'email', 'statut', 'numero_telephone',]
         widgets = {
             'nom_invite': forms.TextInput(attrs={'class': 'w-full px-4 py-2 rounded border border-gray-300 text-black'}),
-            'email': forms.EmailInput(attrs={'class': 'w-full px-4 py-2 rounded border border-gray-300 text-black'}),
-            'statut': forms.Select(attrs={'class': 'w-full px-4 py-2 rounded border border-gray-300 text-black'}),
+            # 'email': forms.EmailInput(attrs={'class': 'w-full px-4 py-2 rounded border border-gray-300 text-black'}),
+            'numero_telephone': forms.TextInput(attrs={'class': 'w-full px-4 py-2 rounded border border-gray-300 text-black', 'placeholder': 'Numéro de téléphone'}),
+            # 'statut': forms.Select(attrs={'class': 'w-full px-4 py-2 rounded border border-gray-300 text-black'}),
         }
 
 # ───────────────────────────────────────────────────────────────
@@ -47,6 +48,11 @@ class EvenementForm(forms.ModelForm):
             'style_invitation': forms.Select(attrs={
                 'class': 'w-full p-2 rounded bg-white/80 text-black'
             }),
+            'image_evenement': forms.ClearableFileInput(attrs={
+                'class': 'w-full p-2 rounded bg-white/80 text-black',
+                'accept': 'image/*'
+            }),
+
         }
 
    
