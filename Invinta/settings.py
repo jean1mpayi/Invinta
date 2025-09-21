@@ -35,7 +35,6 @@ INSTALLED_APPS = [
     'cloudinary_storage',
 
 
-    'livereload',  # Pour le refrachissement en direct
 ]
 
 # Middleware
@@ -48,7 +47,6 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware', 
-    'livereload.middleware.LiveReloadScript',  # Pour le refrachissement en direct
 ]
 
 # URL
